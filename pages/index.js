@@ -26,13 +26,14 @@ export default function Home() {
                             setSwitchDisabled(false)
                         }
                 });
+            }else{
+                axios.get(env.api + '/stop')
+                    .then((response) => {
+                        if(response.data.message === "Container stopped"){
+                            setSwitchDisabled(false)
+                        }
+                    });
             }
-            axios.get(env.api + '/stop')
-                .then((response) => {
-                    if(response.data.message === "Container stopped"){
-                        setSwitchDisabled(false)
-                    }
-                });
         }
     }, [checked])
 
